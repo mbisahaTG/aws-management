@@ -6,15 +6,9 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-ipdb = "*"
-ipython = "*"
-sqlalchemy = "*"
-psycopg2 = "*"
-pandas = "*"
-pytest = "*"
-black = "*"
-invoke = "*"
-inflection="*"
+boto3="*"
+dotmap="*"
+jsonschema="*"
 
 [requires]
 python_version = "3.6"

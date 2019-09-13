@@ -1,12 +1,8 @@
 *.pem
 .python-version
+.DS_Store
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
-
-# client templates for datasource connections
-app/config/tds/*
-!app/config/tds/postgres_template.tds
-.deploy-user-pw

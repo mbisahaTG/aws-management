@@ -4,15 +4,16 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="i3-orm",
+    name="aws-management",
     version="0.0.1",
     author="Sam Toolan",
     author_email="stoolan@telegeography.com",
-    description="Package for ORM models for i3 forum project",
+    description="Wrappers for managing AWS resources",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/pypa/sampleproject",
-    packages=setuptools.find_packages(),
+    url="https://github.com/stoolan/plotly2js.git",
+    packages=["aws_management"],
+    install_requires=["boto3", "dotmap", "jsonschema"],
     classifiers=[
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent",
