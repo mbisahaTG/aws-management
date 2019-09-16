@@ -13,7 +13,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/stoolan/plotly2js.git",
     packages=["aws_management"],
-    install_requires=["boto3", "dotmap", "jsonschema"],
+    install_requires=["boto3", "jsonschema"],
     classifiers=[
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent",

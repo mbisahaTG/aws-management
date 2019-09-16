@@ -1,6 +1,5 @@
 import boto3, botocore
 from os import environ
-from dotmap import DotMap
 import logging
 import jsonschema
 
@@ -65,7 +64,7 @@ class AwsRdsManager:
             instances = rds.describe_db_instances(
                 DBInstanceIdentifier=self.db["database"]
             )
-            return DotMap(instances["DBInstances"][0])
+            return instances["DBInstances"][0]
         except (rds.exceptions.DBInstanceNotFoundFault, KeyError, IndexError) as ex:
             raise AwsRdsProvisionError(f"No Database Provisioned for {self.db}")
 
