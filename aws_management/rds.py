@@ -68,7 +68,7 @@ class AwsRdsManager:
         except (rds.exceptions.DBInstanceNotFoundFault, KeyError, IndexError) as ex:
             raise AwsRdsProvisionError(f"No Database Provisioned for {self.db}")
 
-    def provision(self, silent=True, wait=False):
+    def provision(self, silent=True, wait=None):
         assert hasattr(
             self.__class__, "RDS_CONFIG"
         ), f"No RDS Configuration Given. See {self.__class__.__name__}.set_config"
@@ -91,7 +91,7 @@ class AwsRdsManager:
                 raise ex
         if wait:
             self.log.info(f"Waiting for {self.db} instance to spawn...")
-            waiter = self.boto_client.get_waiter("db_instance_available")
+            waiter = self.boto_client.get_waiter(wait)
             waiter.wait(DBInstanceIdentifier=db_vars["DBInstanceIdentifier"])
             self.log.info(f"{self.db} instance available.")
         else:
