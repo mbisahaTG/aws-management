@@ -16,9 +16,9 @@ class AwsRdsManager:
         properties=dict(
             database=dict(type="string"),
             password=dict(type="string"),
-            user=dict(type="string"),
+            username=dict(type="string"),
         ),
-        required=["database", "password", "user"],
+        required=["database", "password", "username"],
     )
     config_schema = dict(
         type="object",
@@ -78,7 +78,7 @@ class AwsRdsManager:
             {
                 "DBName": self.db["database"],
                 "DBInstanceIdentifier": self.db["database"],
-                "MasterUsername": self.db["user"],
+                "MasterUsername": self.db["username"],
                 "MasterUserPassword": self.db["password"],
             }
         )
