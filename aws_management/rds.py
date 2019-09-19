@@ -90,7 +90,7 @@ class AwsRdsManager:
             else:
                 raise ex
         if wait:
-            self.log.info(f"Waiting for {self.db} instance to spawn...")
+            self.log.info(f"Waiting for {self.db} instance to spawn... This could take a while...")
             waiter = self.boto_client.get_waiter(wait)
             waiter.wait(DBInstanceIdentifier=db_vars["DBInstanceIdentifier"])
             self.log.info(f"{self.db} instance available.")
