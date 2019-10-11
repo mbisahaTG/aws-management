@@ -33,4 +33,6 @@ def test_upload(manager, file, bucket):
     url = manager.presigned_url(bucket, file)
     assert isinstance(url, str)
     assert url.startswith("https://")
+    d = manager.boto_client.get_public_access_block(Bucket=bucket)
+    j(d)
     manager.delete_file(bucket, file)

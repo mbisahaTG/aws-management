@@ -18,6 +18,16 @@ class AwsS3Manager:
         ]
         # Create bucket
         self.boto_client.create_bucket(Bucket=bucket_name, ACL=acl)
+        if acl == "private":
+            self.boto_client.put_public_access_block(
+                Bucket=bucket_name,
+                PublicAccessBlockConfiguration={
+                    "BlockPublicAcls": True,
+                    "BlockPublicPolicy": True,
+                    "IgnorePublicAcls": True,
+                    "RestrictPublicBuckets": True,
+                },
+            )
 
     def delete_bucket(self, bucket_name):
         self.boto_client.delete_bucket(Bucket=bucket_name)
