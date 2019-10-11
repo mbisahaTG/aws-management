@@ -43,6 +43,9 @@ class AwsS3Manager:
         )
         return response
 
+    def upload_file_stream(self, bucket_name, file_stream, file_name):
+        self.boto_client.put_object(Body=file_stream, Bucket=bucket_name, Key=file_name)
+
     def download_file(self, bucket_name, source_file_name, destination_file_name):
         return self.boto_client.download_file(
             bucket_name, source_file_name, destination_file_name
