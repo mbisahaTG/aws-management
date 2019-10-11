@@ -9,6 +9,8 @@ verify_ssl = true
 boto3="*"
 dotmap="*"
 jsonschema="*"
+ipython = "*"
+pytest = "*"
 
 [requires]
 python_version = "3.6"
