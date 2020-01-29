@@ -11,7 +11,7 @@ setuptools.setup(
     description="Wrappers for managing AWS resources",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/stoolan/plotly2js.git",
+    url="https://github.com/stoolan/aws-management.git",
     packages=["aws_management"],
     install_requires=["boto3", "jsonschema"],
     classifiers=[
