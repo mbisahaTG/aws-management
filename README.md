@@ -135,6 +135,68 @@ url = s3_manager.presigned_url("test-bucket", "test.txt", expiration=3600)
 print(url)
 # https://test-bucket.s3.amazonaws.com/test.txt?AWSAccessKeyId=XXXXXXX&Signature=XXXXXXX&Expires=1580327011
 ```
+
+### EC2 Security Ingress Rules
+
+Import:
+```python
+from aws_management.security import AwsSecurityManager
+security_manager = AwsSecurityManager()
+```
+
+Describe Existing security group:
+```python
+security_manager.security_group_description('sg-group-id')
+# {'Description': 'Test security group',
+#  'GroupName': 'sg-group-id',
+#  'IpPermissions': [{'FromPort': 80,
+#    'IpProtocol': 'tcp',
+#    'IpRanges': [{'CidrIp': '0.0.0.0/0'}],
+#    'Ipv6Ranges': [{'CidrIpv6': '::/0'}],
+#    'PrefixListIds': [],
+#    'ToPort': 80,
+#    'UserIdGroupPairs': [{'GroupId': 'sg-XXXXXX',
+#      'UserId': '342637690033'}]},
+```
+
+Revoke all ingress rules
+```python
+security_manager.revoke_ingress('sg-group-id')
+```
+
+Reset all ingress rules
+```python
+# Only allow "another-security-group" and an IP to access port 22
+security_manager.set_ingress_rules(
+  'sg-group-id',
+  ports = [22],
+  ips = ['XX.XXX.XXX.XX'],
+  allowed_groups = ["another-security-group"]
+)
+```
+
+Add incremental IP access:
+```python
+new_ip = 'XX.XXX.XXX.XX'
+allowed_ports = [22, 443]
+
+permissions = [security_manager.ip_permisions(port, new_ip) for port in allowed_ports]
+
+security_manager.set_ingress_rule('sg-group-id', permissions)
+
+```
+
+Add incremental Security Group access:
+```python
+new_sg = "another-security-group"
+allowed_ports = [22, 443]
+
+permissions = [security_manager.group_permisions(port, new_sg) for port in allowed_ports]
+
+security_manager.set_ingress_rule('sg-group-id', permissions)
+
+```
+
 ## Contributing
 Contribution directions go here.
 
