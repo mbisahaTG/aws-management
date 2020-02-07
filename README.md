@@ -8,6 +8,12 @@ Install using pip
 $ pip install git+https://github.com/stoolan/aws-management.git
 ```
 
+If you are using `requirements.txt`, install in editable mode:
+
+```bash
+$ pip install -e git+https://github.com/stoolan/aws-management.git#egg=aws_management
+```
+
 ## Usage
 
 ### RDS Resources
